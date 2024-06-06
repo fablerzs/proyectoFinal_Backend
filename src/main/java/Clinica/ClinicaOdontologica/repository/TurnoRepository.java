@@ -1,4 +1,7 @@
 package Clinica.ClinicaOdontologica.repository;
 
-public interface TurnoRepository {
+import Clinica.ClinicaOdontologica.entity.Turno;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TurnoRepository extends JpaRepository<Turno,Long> {
 }

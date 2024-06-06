@@ -9,7 +9,7 @@ import jdk.jfr.Enabled;
 public class Domicilio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String calle;
