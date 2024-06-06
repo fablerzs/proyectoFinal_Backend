@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/odontologos")
 public class OdontologoController {
     @Autowired
-    private final OdontologoService odontologoService;
+    private OdontologoService odontologoService;
 
     @PostMapping(path = "/guardar")
     public ResponseEntity<Odontologo> guardarOdontologo(@RequestBody Odontologo odontologo){
@@ -38,12 +38,13 @@ public class OdontologoController {
     public ResponseEntity<String> eliminarOdontologo(@RequestParam("id") Long id) {
 
         Optional<Odontologo> odontologo = odontologoService.buscarOdontologoPorId(id);
-        if(odontologo.isPresent())
+        if(odontologo.isPresent()){
             odontologoService.eliminarOdontologo(id);
+            return ResponseEntity.ok("Odontologo con id "+id +" ha sido eliminado con exito");}
         else
             return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok("Odontologo con id "+id +" ha sido eliminado con exito");
+
     }
 
     @PutMapping(path = "/actualizar")
