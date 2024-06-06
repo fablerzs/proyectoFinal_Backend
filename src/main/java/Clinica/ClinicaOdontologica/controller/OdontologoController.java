@@ -1,47 +1,54 @@
 package Clinica.ClinicaOdontologica.controller;
 
 
+import Clinica.ClinicaOdontologica.Service.OdontologoService;
 import Clinica.ClinicaOdontologica.entity.Odontologo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-/*@RestController
+@RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
+    @Autowired
     private final OdontologoService odontologoService;
 
-    public OdontologoController() {
-        this.odontologoService = new OdontologoService();
-    }
     @PostMapping(path = "/guardar")
-    public Odontologo guardarOdontologo(@RequestBody Odontologo odontologo){
-        return odontologoService.agregarOdontologo(odontologo);
+    public ResponseEntity<Odontologo> guardarOdontologo(@RequestBody Odontologo odontologo){
+        return ResponseEntity.ok(odontologoService.guardarOdontologo(odontologo));
     }
 
     @GetMapping(path = "/buscarid")
-    public Odontologo buscarPorId(@RequestParam("matricula") Integer id){
-        return odontologoService.buscarPorId(id);
+    public ResponseEntity<Odontologo> buscarPorId(@RequestParam("matricula") Long id){
+        Optional<Odontologo> odontologo = odontologoService.buscarOdontologoPorId(id);
+        if (odontologo.isPresent())
+            return ResponseEntity.ok(odontologo.get());
+        else
+            return ResponseEntity.notFound().build();
     }
     @GetMapping(path = "/listartodos")
     public ResponseEntity<List<Odontologo>> listarTodos(){
-        return ResponseEntity.ok(odontologoService.mostrarOdontologos());
+        return ResponseEntity.ok(odontologoService.listarOdontologos());
     }
 
     @DeleteMapping(path = "/eliminar")
-    public String eliminarOdontologo(@RequestParam("id") Integer id){
-        odontologoService.eliminar(id);
-        return "Odontologo con id "+id +" ha sido eliminado con exito";
+    public ResponseEntity<String> eliminarOdontologo(@RequestParam("id") Long id) {
+
+        Optional<Odontologo> odontologo = odontologoService.buscarOdontologoPorId(id);
+        if(odontologo.isPresent())
+            odontologoService.eliminarOdontologo(id);
+        else
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok("Odontologo con id "+id +" ha sido eliminado con exito");
     }
 
     @PutMapping(path = "/actualizar")
-    public String actualizarDatos(@RequestBody Odontologo odontologo){
-        odontologoService.actualizar(odontologo);
-        return "odontologo con matricula : " + odontologo.getMatricula() + " actualizado con exito";
+    public ResponseEntity<String> actualizarDatos(@RequestBody Odontologo odontologo){
+        odontologoService.actualizarOdontologo(odontologo);
+        return ResponseEntity.ok("odontologo con matricula : " + odontologo.getMatricula() + " actualizado con exito");
     }
-
-
-
-
-}*/
+}
