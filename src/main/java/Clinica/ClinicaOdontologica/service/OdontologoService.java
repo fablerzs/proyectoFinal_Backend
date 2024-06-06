@@ -1,4 +1,4 @@
-package Clinica.ClinicaOdontologica.Service;
+package Clinica.ClinicaOdontologica.service;
 
 import Clinica.ClinicaOdontologica.entity.Odontologo;
 import Clinica.ClinicaOdontologica.repository.OdontologoRepository;

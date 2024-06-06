@@ -1,7 +1,7 @@
 package Clinica.ClinicaOdontologica.controller;
 
 
-import Clinica.ClinicaOdontologica.Service.OdontologoService;
+import Clinica.ClinicaOdontologica.service.OdontologoService;
 import Clinica.ClinicaOdontologica.entity.Odontologo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
