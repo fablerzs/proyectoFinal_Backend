@@ -4,7 +4,7 @@ import Clinica.ClinicaOdontologica.entity.Turno;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+/*@RestController
 @RequestMapping("/turnos")
 public class TurnoController {
     private TurnoService turnoService;
@@ -27,4 +27,4 @@ public class TurnoController {
     }
 
 
-}
+}*/

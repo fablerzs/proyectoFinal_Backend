@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+/*@RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
     private final OdontologoService odontologoService;
@@ -44,4 +44,4 @@ public class OdontologoController {
 
 
 
-}
+}*/

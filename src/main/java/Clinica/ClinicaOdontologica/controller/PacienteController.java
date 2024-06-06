@@ -13,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping ("/pacientes")
 public class PacienteController {
-    private final PacienteService pacienteService;
 
     @Autowired
     private PacienteService pacienteService;
@@ -36,8 +35,8 @@ public class PacienteController {
     }
 
     @GetMapping (path = "/mostrar")
-    public List<Paciente> listarPacientes (){
-        return pacienteService.listarPacientes();
+    public ResponseEntity<List<Paciente>> listarPacientes (){
+        return ResponseEntity.ok(pacienteService.listarTodos());
     }
 
     @PutMapping (path = "/actualizar")
