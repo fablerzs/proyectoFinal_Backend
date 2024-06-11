@@ -1,16 +1,24 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
     const form = document.forms[0];
-    const url = 'odontologos/guardar';
+    const url = 'pacientes/agregar';
 
 form.addEventListener('submit', function (event) {
     console.log("ejecutando script");
     event.preventDefault();
     //creamos el cuerpo de la request
     const payload = {
-        matricula: document.querySelector('#matricula').value,
         nombre: document.querySelector('#nombre').value,
-        apellido: document.querySelector('#apellido').value
+            apellido: document.querySelector('#apellido').value,
+            dni: document.querySelector('#dni').value,
+            fechaIngreso: document.querySelector('#fechaIngreso').value,
+            domicilio: {
+                calle: document.querySelector('#calle').value,
+                numero: document.querySelector('#numero').value,
+                localidad: document.querySelector('#localidad').value,
+                provincia: document.querySelector('#provincia').value,
+            },
+            email: document.querySelector('#email').value
     };
     //configuramos la request del Fetch
     const settings = {
@@ -37,19 +45,20 @@ function realizarRegister(settings) {
             console.log(response);
 
             if (response.ok==true) {
-                alert("Odontologo agregado con exito");
+                alert("Paciente agregado con exito");
             } else{
                 alert("Alguno de los datos es incorrecto.")
             }
-            return response.json();
+
+             return response.json();
 
         })
         .then(data => {
             console.log("Promesa cumplida:");
             console.log(data);
 
-
-
+    
+            
         }).catch(err => {
             console.log("Promesa rechazada:");
             console.log(err);
