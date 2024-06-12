@@ -1,24 +1,28 @@
 window.addEventListener('load', function(){
     console.log("iniciando funcion")
-    //(function(){
-        
-
-    const api = '/odontologos/listartodos';
-    const settings = {
-        method: 'GET'
-      }
+    const form = document.querySelector('#find_odontologo');
+    var table = document.getElementById("odontologoTable");
+    
     
 
 
-    
-        fetch(api,settings)
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log(e);
+        let id = document.querySelector('#id').value
+        const url = '/odontologos/buscarid/'+id;
+        const settings = {
+            method: 'GET'
+
+        }
+
+        fetch(url,settings)
         .then(response => response.json())
-        .then(data =>{
-            for(odontologo of data){
-                console.log("iniciando for")
-                var table = document.getElementById("odontologoTable");
-                var odontologoRow = table.insertRow();
-                let id = odontologo.id;
+        .then(data => {
+            console.log(data)
+            let odontologo = data;
+            var odontologoRow = table.insertRow();
+            let id = odontologo.id;
                 odontologoRow.id = id;
 
                 //boton de eliminar
@@ -41,18 +45,26 @@ window.addEventListener('load', function(){
                     '<td class=\"td_nombre\">' + odontologo.nombre.toUpperCase() + '</td>' +
                     '<td class=\"td_apellido\">' + odontologo.apellido.toUpperCase() + '</td>' +
                     '<td>' + deleteButton + '</td>';
-            } // termina iteracion
+            
+            
+            
+            
+            document.querySelector('#div_odontologo_table').style.display = 'flex';
+            
 
+            alert("Odontologo encontrado con exito")
         })
-
-        (function(){
-            let pathname = window.location.pathname;
-            if (pathname == "/odontologoList.html") {
-                document.querySelector(".nav .nav-item a:last").addClass("active");
-            }
-          })
-    //})
+        .catch(err => {
+            alert("Odontologo no encontrado")
+            console.log("promesa incumplida")
+        })
+        
     
+    })
     
+   
+   
+   
+   
     
 })

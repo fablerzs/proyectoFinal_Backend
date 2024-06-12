@@ -21,8 +21,8 @@ public class OdontologoController {
         return ResponseEntity.ok(odontologoService.guardarOdontologo(odontologo));
     }
 
-    @GetMapping(path = "/buscarid")
-    public ResponseEntity<Odontologo> buscarPorId(@RequestParam("matricula") Long id){
+    @GetMapping(path = "/buscarid/{id}")
+    public ResponseEntity<Odontologo> buscarPorId(@PathVariable Long id){
         Optional<Odontologo> odontologo = odontologoService.buscarOdontologoPorId(id);
         if (odontologo.isPresent())
             return ResponseEntity.ok(odontologo.get());
@@ -48,8 +48,8 @@ public class OdontologoController {
     }
 
     @PutMapping(path = "/actualizar")
-    public ResponseEntity<String> actualizarDatos(@RequestBody Odontologo odontologo){
+    public ResponseEntity<Odontologo> actualizarDatos(@RequestBody Odontologo odontologo){
         odontologoService.actualizarOdontologo(odontologo);
-        return ResponseEntity.ok("odontologo con matricula : " + odontologo.getMatricula() + " actualizado con exito");
+        return ResponseEntity.ok(odontologo);
     }
 }

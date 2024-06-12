@@ -21,9 +21,9 @@
   justify-content:center;
   height: 100vh;
   gap: 40px;
-  background-image: url(/img/index_background.avif);
-  background-repeat: no-repeat;
-  background-size: 100vw;
+  background-image: url(/img/background.jpg);
+  background-repeat: repeat;
+  
 }
 
 .form_agregar{
@@ -77,4 +77,19 @@
 
 .subtitulo_principal{
   text-align: center;
+}
+
+#div_odontologo_table {
+  background-color: cadetblue;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 60vw;
+}
+#odontologoTable {
+  width: 100%;
 }

@@ -25,13 +25,20 @@ window.addEventListener('load', function () {
         const url = '/odontologos/actulizar';
         const settings = {
             method: 'PUT',
+            body: JSON.stringify(formData),
             headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
+                'Content-Type': 'application/json'
+            }
         }
           fetch(url,settings)
           .then(response => response.json())
+          .then(data => {
+            let odontologo = data;
+            alert("Odontologo con id "+ odontologo.id+" actualizado con exito")
+          })
+          .catch(error=>{
+            alert("No se pudo actualizar el odontologo")
+          })
 
     })
  })
@@ -40,18 +47,19 @@ window.addEventListener('load', function () {
     //se encarga de llenar el formulario con los datos de la pelicula
     //que se desea modificar
     function findBy(id) {
-          const url = '/odontologos/actualizar?id='+id;
+          const url = '/odontologos/buscarid/'+id;
           const settings = {
-              method: 'PUT'
+              method: 'GET'
           }
           fetch(url,settings)
           .then(response => response.json())
           .then(data => {
               let odontologo = data;
+              console.log(odontologo.id)
               document.querySelector('#odontologo_id').value = odontologo.id;
-              document.querySelector('#matricula').value = matricula.titulo;
-              document.querySelector('#nombre').value = nombre.categoria;
-              document.querySelector('#apellido').value = apellido.premios;
+              document.querySelector('#matricula').value = matricula.matricula;
+              document.querySelector('#nombre').value = nombre.nombre;
+              document.querySelector('#apellido').value = apellido.apellido;
               //el formulario por default esta oculto y al editar se habilita
               document.querySelector('#div_odontologo_updating').style.display = "block";
           }).catch(error => {
