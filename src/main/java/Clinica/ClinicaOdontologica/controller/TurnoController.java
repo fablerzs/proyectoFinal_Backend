@@ -3,6 +3,7 @@ package Clinica.ClinicaOdontologica.controller;
 import Clinica.ClinicaOdontologica.entity.Odontologo;
 import Clinica.ClinicaOdontologica.entity.Paciente;
 import Clinica.ClinicaOdontologica.entity.Turno;
+import Clinica.ClinicaOdontologica.exception.BadRequestException;
 import Clinica.ClinicaOdontologica.service.OdontologoService;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.service.TurnoService;
@@ -25,15 +26,16 @@ public class TurnoController {
     private OdontologoService odontologoService;
 
     @PostMapping
-    public ResponseEntity<Turno> guardarTurno(@RequestBody Turno turno){
+    public ResponseEntity<Turno> guardarTurno(@RequestBody Turno turno) throws BadRequestException {
         Optional<Paciente> pacienteBuscado = pacienteService.buscarPorId(turno.getPaciente().getId());
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarOdontologoPorId(turno.getOdontologo().getId());
         if(pacienteBuscado.isPresent() && odontologoBuscado.isPresent()){
-
+            turno.setPaciente(pacienteBuscado.get());
+            turno.setOdontologo(odontologoBuscado.get());
             return ResponseEntity.ok(turnoService.nuevoTurno(turno));}
 
         else
-            return ResponseEntity.badRequest().build();
+            throw new BadRequestException("No existe el odontologo o el paciente indicados");
     }
 
     @GetMapping

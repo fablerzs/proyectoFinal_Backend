@@ -1,6 +1,7 @@
 package Clinica.ClinicaOdontologica.controller;
 
 
+import Clinica.ClinicaOdontologica.exception.ResourceNotFoundException;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.entity.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,12 @@ public class PacienteController {
     }
 
     @GetMapping (path = "/buscarid/{id}")
-    public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id){
+    public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Paciente> pacientebuscado = pacienteService.buscarPorId(id);
         if (pacientebuscado.isPresent()){
             return ResponseEntity.ok(pacientebuscado.get());
         }else{
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Paciente con id: "+id+" no existe en la base de datos");
         }
     }
 
@@ -46,23 +47,23 @@ public class PacienteController {
     }
 
     @DeleteMapping (path = "/eliminar/{id}")
-    public ResponseEntity<String> eliminarPorId(@PathVariable Long id){
+    public ResponseEntity<String> eliminarPorId(@PathVariable Long id) throws ResourceNotFoundException{
         Optional<Paciente> pacientebuscado = pacienteService.buscarPorId(id);
         if (pacientebuscado.isPresent()){
             pacienteService.eliminarPaciente(id);
             return ResponseEntity.ok("Eliminado con exito");
         }else{
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("El paciente con el id: "+id+" no existe en la base de datos");
         }
     }
 
     @GetMapping (path = "/buscarporemail/{email}")
-    public ResponseEntity<Paciente> buscarPorEmail(@PathVariable String email){
+    public ResponseEntity<Paciente> buscarPorEmail(@PathVariable String email) throws ResourceNotFoundException {
         Optional<Paciente> pacientebuscado = pacienteService.buscarPorEmail(email);
         if (pacientebuscado.isPresent()){
             return ResponseEntity.ok(pacientebuscado.get());
         }else{
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("El paciente con el email: "+email+" no existe en la base de datos");
         }
     }
 
