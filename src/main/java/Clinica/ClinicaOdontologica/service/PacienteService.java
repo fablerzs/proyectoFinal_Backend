@@ -2,6 +2,7 @@ package Clinica.ClinicaOdontologica.service;
 
 import Clinica.ClinicaOdontologica.entity.Paciente;
 import Clinica.ClinicaOdontologica.repository.PacienteRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class PacienteService {
 
-    @Autowired
     private PacienteRepository pacienteRepository;
 
     public Paciente guardarPaciente (Paciente paciente) {
