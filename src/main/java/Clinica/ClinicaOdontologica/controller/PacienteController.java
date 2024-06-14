@@ -1,9 +1,9 @@
 package Clinica.ClinicaOdontologica.controller;
 
-
 import Clinica.ClinicaOdontologica.exception.ResourceNotFoundException;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.entity.Paciente;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping ("/pacientes")
+@RequestMapping("/paciente")
+@AllArgsConstructor
 public class PacienteController {
 
-    @Autowired
     private PacienteService pacienteService;
 
-
-    @PostMapping (path = "/agregar")
+    @PostMapping
     public ResponseEntity<Paciente> agregarPaciente(@RequestBody Paciente paciente){
-
         return ResponseEntity.ok(pacienteService.guardarPaciente(paciente));
     }
 
@@ -35,7 +33,7 @@ public class PacienteController {
         }
     }
 
-    @GetMapping (path = "/mostrar")
+    @GetMapping (path = "/listar")
     public ResponseEntity<List<Paciente>> listarPacientes (){
         return ResponseEntity.ok(pacienteService.listarTodos());
     }
@@ -66,16 +64,5 @@ public class PacienteController {
             throw new ResourceNotFoundException("El paciente con el email: "+email+" no existe en la base de datos");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
