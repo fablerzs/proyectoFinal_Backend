@@ -9,16 +9,16 @@ form.addEventListener('submit', function (event) {
     //creamos el cuerpo de la request
     const payload = {
         nombre: document.querySelector('#nombre').value,
-            apellido: document.querySelector('#apellido').value,
-            dni: document.querySelector('#dni').value,
-            fechaIngreso: document.querySelector('#fechaIngreso').value,
-            domicilio: {
-                calle: document.querySelector('#calle').value,
-                numero: document.querySelector('#numero').value,
-                localidad: document.querySelector('#localidad').value,
-                provincia: document.querySelector('#provincia').value,
-            },
-            email: document.querySelector('#email').value
+        apellido: document.querySelector('#apellido').value,
+        dni: document.querySelector('#dni').value,
+        fechaIngreso: document.querySelector('#fechaIngreso').value,
+        domicilio: {
+            calle: document.querySelector('#calle').value,
+            numero: document.querySelector('#numero').value,
+            localidad: document.querySelector('#localidad').value,
+            provincia: document.querySelector('#provincia').value,
+        },
+        email: document.querySelector('#email').value
     };
     //configuramos la request del Fetch
     const settings = {
