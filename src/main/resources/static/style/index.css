@@ -26,6 +26,12 @@
   
 }
 
+.main_content h3 {
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 30px;
+}
+
 .form_agregar{
   background-color: cadetblue;
   padding: 50px;
@@ -79,7 +85,7 @@
   text-align: center;
 }
 
-#div_odontologo_table {
+#div_odontologo_table, #div_turno_table, #div_paciente_table {
   background-color: cadetblue;
   display: flex;
   flex-direction: column;

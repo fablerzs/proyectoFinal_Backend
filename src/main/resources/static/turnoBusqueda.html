@@ -68,12 +68,70 @@
 <div class="main_content" >
 
 
-<div class="titulo" id="titulo">
-    <div class="bievenida" id="bienvenida">
-        <h1 class="titulo_pagina" id="titulo_pagina">BIENVENIDO A TU CLINICA DENTAL</h1>
-        <h2 class="subtitulo_principal" id="subtitulo_principal">Selecciona una opción del menú</h2>
-    </div>
-</div>
+    <div class="form_agregar">
+        <h3>Buscar turno</h3>       
+       <form id="find_turno">
+           <div class="form-group">
+               <label class="control-label" for="id">ID:</label>
+               <input type="number" class="form-control" id="id"
+                      placeholder="Ingrese el id a buscar"
+                      name="id" required></input>
+           </div>
+
+
+           <button type="submit" class="btn btn-danger"
+                   id="btn-add-new-turno">Buscar</button>
+       </form>
+   </div>
+   
+   <div id="div_turno_table" style="display: none;">
+       <h1>Odontologo encontrado</h1>
+       <div class="row col-md-6 table-responsive">
+           <table id="odontologoTable" class="table table-striped">
+               <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>ID del Paciente</th>
+                   <th>ID del Odontologo</th>
+                   <th>Fecha</th>
+                   <th></th>
+               </tr>
+               </thead>
+               <tbody id="turnoTableBody">
+
+               </tbody>
+           </table>
+       </div>
+   </div>
+   <div class="row">
+       <div class="col-sm-6" style="display: none;
+                                           background-color:#e6fffa; padding:10px; border-radius:3px"
+            id="div_turno_updating">
+           <form id="update_turno_form">
+               <div class="form-group">
+                   <label >Id:</label>
+                   <input type="text" class="form-control" id="turno_id" readonly>
+               </div>
+               <div class="form-group">
+                   <label >ID del paciente:</label>
+                   <input type="text" class="form-control" placeholder="id_paciente" id="id_paciente">
+               </div>
+               <div class="form-group">
+                   <label >ID del odontologo:</label>
+                   <input type="text" class="form-control" placeholder="_id_odontologo" id="id_odontologo">
+               </div>
+               <div class="form-group">
+                   <label >Fecha:</label>
+                   <input type="text" class="form-control" placeholder="fecha" id="fecha">
+               </div>
+
+
+               <button type="submit" class="btn btn-primary">Modificar</button>
+           </form>
+           <div id="response" style="display:none; margin:10px">
+           </div>
+       </div>
+   </div>
 
 
 

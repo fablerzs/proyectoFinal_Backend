@@ -62,7 +62,12 @@ window.addEventListener('load', function(){
     
     })
     
-   
+    (function(){
+        let pathname = window.location.pathname;
+        if (pathname == "/odontologoList.html") {
+            document.querySelector(".nav .nav-item a:last").addClass("active");
+        }
+      })
    
    
    
