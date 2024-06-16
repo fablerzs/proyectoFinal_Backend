@@ -28,7 +28,7 @@ public class PacienteController {
         Optional<Paciente> pacientebuscado = pacienteService.buscarPorId(id);
         if (pacientebuscado.isPresent()){
             return ResponseEntity.ok(pacientebuscado.get());
-        }else{
+        } else{
             throw new ResourceNotFoundException("Paciente con id: "+id+" no existe en la base de datos");
         }
     }
@@ -50,7 +50,7 @@ public class PacienteController {
         if (pacientebuscado.isPresent()){
             pacienteService.eliminarPaciente(id);
             return ResponseEntity.ok("Eliminado con exito");
-        }else{
+        } else{
             throw new ResourceNotFoundException("El paciente con el id: "+id+" no existe en la base de datos");
         }
     }
@@ -60,8 +60,18 @@ public class PacienteController {
         Optional<Paciente> pacientebuscado = pacienteService.buscarPorEmail(email);
         if (pacientebuscado.isPresent()){
             return ResponseEntity.ok(pacientebuscado.get());
-        }else{
+        } else{
             throw new ResourceNotFoundException("El paciente con el email: "+email+" no existe en la base de datos");
+        }
+    }
+
+    @GetMapping (path = "/nombre/{nombre}")
+    public ResponseEntity<Paciente> buscarPorNombre(@PathVariable String nombre) throws ResourceNotFoundException {
+        Optional<Paciente> pacientebuscado = pacienteService.buscarPorNombre(nombre);
+        if (pacientebuscado.isPresent()){
+            return ResponseEntity.ok(pacientebuscado.get());
+        } else{
+            throw new ResourceNotFoundException("El paciente con el nombre: "+nombre+" no existe en la base de datos");
         }
     }
 

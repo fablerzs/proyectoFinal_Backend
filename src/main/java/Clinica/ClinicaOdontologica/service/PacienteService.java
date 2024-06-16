@@ -27,6 +27,10 @@ public class PacienteService {
         return pacienteRepository.findByEmail(email);
     }
 
+    public Optional<Paciente> buscarPorNombre(String nombre){
+        return pacienteRepository.findByNombre(nombre);
+    }
+
     public Optional<Paciente> buscarPorId (Long id){
         return pacienteRepository.findById(id);
     }
