@@ -1,17 +1,25 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
     const form = document.forms[0];
-    const url = '/turnos';
+    const url = '/turno';
+
 
 form.addEventListener('submit', function (event) {
     console.log("ejecutando script");
     event.preventDefault();
     //creamos el cuerpo de la request
     const payload = {
-        paciente:{ id: document.querySelector('#paciente_id').value},
-        odontologo:{ id: document.querySelector('#odontologo_id').value},
+        paciente:{
+            id: document.querySelector('#paciente_id').value
+        },
+        odontologo:{
+            id: document.querySelector('#odontologo_id').value
+        },
         fecha: document.querySelector('#fecha').value
     };
+
+    console.log(payload)
+
     //configuramos la request del Fetch
     const settings = {
         method: 'POST',
@@ -38,7 +46,7 @@ function realizarRegister(settings) {
 
             if (response.ok==true) {
                 alert("Turno agregado con exito");
-            } else{
+            } else {
                 alert("Alguno de los datos es incorrecto.")
             }
 
@@ -49,8 +57,6 @@ function realizarRegister(settings) {
             console.log("Promesa cumplida:");
             console.log(data);
 
-    
-            
         }).catch(err => {
             console.log("Promesa rechazada:");
             console.log(err);

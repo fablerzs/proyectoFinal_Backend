@@ -4,10 +4,11 @@ import Clinica.ClinicaOdontologica.entity.Odontologo;
 import Clinica.ClinicaOdontologica.entity.Paciente;
 import Clinica.ClinicaOdontologica.entity.Turno;
 import Clinica.ClinicaOdontologica.exception.BadRequestException;
+import Clinica.ClinicaOdontologica.exception.ResourceNotFoundException;
 import Clinica.ClinicaOdontologica.service.OdontologoService;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.service.TurnoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/turnos")
+@AllArgsConstructor
+@RequestMapping("/turno")
 public class TurnoController {
 
-    @Autowired
     private TurnoService turnoService;
-    @Autowired
     private PacienteService pacienteService;
-    @Autowired
     private OdontologoService odontologoService;
 
     @PostMapping
@@ -32,9 +31,9 @@ public class TurnoController {
         if(pacienteBuscado.isPresent() && odontologoBuscado.isPresent()){
             turno.setPaciente(pacienteBuscado.get());
             turno.setOdontologo(odontologoBuscado.get());
-            return ResponseEntity.ok(turnoService.nuevoTurno(turno));}
+            return ResponseEntity.ok(turnoService.nuevoTurno(turno));
 
-        else
+        } else
             throw new BadRequestException("No existe el odontologo o el paciente indicados");
     }
 
@@ -44,7 +43,11 @@ public class TurnoController {
     }
 
 
-
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> borrarTurno(@RequestParam Long id) throws ResourceNotFoundException {
+        turnoService.eliminarTurno(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

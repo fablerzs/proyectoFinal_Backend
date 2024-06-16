@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
-    const form = document.querySelector('#find_paciente');
-    var table = document.getElementById("pacienteTable");
+    const form = document.querySelector('#find_turno');
+    var table = document.getElementById("turnoTable");
 
     form.addEventListener('submit', function(e){
         e.preventDefault();
@@ -15,43 +15,38 @@ window.addEventListener('load', function(){
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            let paciente = data;
-            var pacienteRow = table.insertRow();
-            let id = paciente.id;
-                pacienteRow.id = id;
+            let turno = data;
+
+            var turnoRow = table.insertRow();
+            let tr_id = 'tr_' + turno.id;
+            turnoRow.id = tr_id;
 
                 //boton de eliminar
                 let deleteButton = '<button' +
-                                      ' id=' + '\"' + 'btn_delete_' + paciente.id + '\"' +
-                                      ' type="button" onclick="deleteBy('+paciente.id+')" class="btn btn-danger btn_delete">' +
+                                      ' id=' + '\"' + 'btn_delete_' + turno.id + '\"' +
+                                      ' type="button" onclick="deleteBy('+turno.id+')" class="btn btn-danger btn_delete">' +
                                       '&times' +
                                       '</button>';
 
                 //boton de actualizar
                 let updateButton = '<button' +
-                                      ' id=' + '\"' + 'btn_id_' + paciente.id + '\"' +
-                                      ' type="button" onclick="findBy('+paciente.id+')" class="btn btn-info btn_id">' +
-                                      paciente.id +
+                                      ' id=' + '\"' + 'btn_id_' + turno.id + '\"' +
+                                      ' type="button" onclick="findBy('+turno.id+')" class="btn btn-info btn_id">' +
+                                      turno.id +
                                       '</button>';
 
                 //insertar datos
-                pacienteRow.innerHTML = '<td>' + updateButton + '</td>' +
-                    '<td class=\"td_nombre\">' + paciente.nombre.toUpperCase() + '</td>' +
-                    '<td class=\"td_apellido\">' + paciente.apellido.toUpperCase() + '</td>' +
-                    '<td class=\"td_cedula\">' + paciente.dni.toUpperCase() + '</td>' +
-                    '<td class=\"td_fechaIngreso\">' + paciente.fechaIngreso.toUpperCase() + '</td>' +
-                    '<td class=\"td_calle\">' + paciente.domicilio.calle.toUpperCase() + '</td>' +
-                    '<td class=\"td_numero\">' + paciente.domicilio.numero + '</td>' +
-                    '<td class=\"td_localidad\">' + paciente.domicilio.localidad.toUpperCase() + '</td>' +
-                    '<td class=\"td_provincia\">' + paciente.domicilio.provincia.toUpperCase() + '</td>' +
-                    '<td class=\"td_email\">' + paciente.email.toUpperCase() + '</td>' +
+                turnoRow.innerHTML = '<td>' + updateButton + '</td>' +
+                    '<td class=\"td_id_paciente\">' + turno.paciente.id + '</td>' +
+                    '<td class=\"td_id_odontologo\">' + turno.odontologo.id + '</td>' +
+                    '<td class=\"td_fecha\">' + turno.fecha + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
-            document.querySelector('#div_paciente_table').style.display = 'flex';
+            document.querySelector('#div_turno_table').style.display = 'flex';
 
         })
         .catch(err => {
-            alert("Paciente no encontrado")
+            alert("Turno no encontrado")
         })
 
 

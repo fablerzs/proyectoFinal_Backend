@@ -1,12 +1,20 @@
 package Clinica.ClinicaOdontologica.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "odontologo")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Odontologo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Long id;
     @Column
     private Integer matricula;
@@ -15,45 +23,12 @@ public class Odontologo {
     @Column
     private String apellido;
 
-    public Odontologo(Long id, Integer matricula, String nombre, String apellido) {
-        this.id = id;
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
-
     public Odontologo(Integer matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Odontologo() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getMatricula() {
-        return matricula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setMatricula(Integer matricula) {
-        this.matricula = matricula;
-    }
 
     @Override
     public String toString() {
