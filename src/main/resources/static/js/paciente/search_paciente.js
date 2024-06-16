@@ -16,9 +16,11 @@ window.addEventListener('load', function(){
         .then(data => {
             console.log(data)
             let paciente = data;
+
+
             var pacienteRow = table.insertRow();
-            let id = paciente.id;
-                pacienteRow.id = id;
+            let tr_id = 'tr_' + paciente.id;
+            pacienteRow.id = tr_id;
 
                 //boton de eliminar
                 let deleteButton = '<button' +
