@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Turnos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/index.css">
-    <script src="js/search_odontologo.js"></script>
-    <script src="js/update_odontologo.js"></script>
-    <script src="js/delete_odontologo.js"></script>
+    <link rel="stylesheet" href="../../style/index.css">
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="Index.html">Home</a>
+        <a class="navbar-brand" href="../../index.html">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,11 +22,11 @@
                         Pacientes
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/pacienteAlta.html">Agregar nuevo</a></li>
+                        <li><a class="dropdown-item" href="../paciente/pacienteAlta.html">Agregar nuevo</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/pacienteBusqueda.html">Buscar paciente  </a></li>
+                        <li><a class="dropdown-item" href="../paciente/pacienteBusqueda.html">Buscar paciente  </a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/pacienteList.html">Listar todos</a></li>
+                        <li><a class="dropdown-item" href="../paciente/pacienteList.html">Listar todos</a></li>
                         <li><hr class="dropdown-divider"></li>
                     </ul>
                 </li>
@@ -38,11 +35,11 @@
                         Odontologos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/odontologoAlta.html">Agregar nuevo</a></li>
+                        <li><a class="dropdown-item" href="../odontologo/odontologoAlta.html">Agregar nuevo</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/odontologoBusqueda.html">Buscar odontologo</a></li>
+                        <li><a class="dropdown-item" href="../odontologo/odontologoBusqueda.html">Buscar odontologo</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/odontologoList.html">Listar todos</a></li>
+                        <li><a class="dropdown-item" href="../odontologo/odontologoList.html">Listar todos</a></li>
                         <li><hr class="dropdown-divider"></li>
                     </ul>
                 </li>
@@ -51,82 +48,65 @@
                         Turnos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/turnoAlta.html">Agregar nuevo</a></li>
+                        <li><a class="dropdown-item" href="../turno/turnoAlta.html">Agregar nuevo</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/turnoBusqueda.html">Buscar turno</a></li>
+                        <li><a class="dropdown-item" href="../turno/turnoBusqueda.html">Buscar turno</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/turnoList.html">Listar todos</a></li>
+                        <li><a class="dropdown-item" href="../turno/turnoList.html">Listar todos</a></li>
                         <li><hr class="dropdown-divider"></li>
                     </ul>
                 </li>
-
-
             </ul>
-            
         </div>
     </div>
 </nav>
 
 
 <div class="main_content" >
-    <div class="form_agregar">
-         <h3>Busqueda de odontologo</h3>       
-        <form id="find_odontologo">
-            <div class="form-group">
-                <label class="control-label" for="id">ID:</label>
-                <input type="number" class="form-control" id="id"
-                       placeholder="Ingrese el id a buscar"
-                       name="id" required></input>
-            </div>
 
 
-            <button type="submit" class="btn btn-danger"
-                    id="btn-add-new-odontologo">Buscar</button>
-        </form>
-    </div>
-    
-    <div id="div_odontologo_table" style="display: none;">
-        <h1>Odontologo encontrado</h1>
+    <div id="div_turno_table">
+        <h1>Lista de turnos</h1>
         <div class="row col-md-6 table-responsive">
             <table id="odontologoTable" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Matricula</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>ID</th>
+                    <th>ID del Paciente</th>
+                    <th>ID del Odontologo</th>
+                    <th>Fecha</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody id="odontologoTableBody">
-
+                <tbody id="turnoTableBody">
+ 
                 </tbody>
             </table>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6" style="display: none;
-											background-color:#e6fffa; padding:10px; border-radius:3px"
-             id="div_odontologo_updating">
-            <form id="update_odontologo_form">
+                                            background-color:#e6fffa; padding:10px; border-radius:3px"
+             id="div_turno_updating">
+            <form id="update_turno_form">
                 <div class="form-group">
                     <label >Id:</label>
-                    <input type="text" class="form-control" id="odontologo_id" readonly>
+                    <input type="text" class="form-control" id="turno_id" readonly>
                 </div>
                 <div class="form-group">
-                    <label >Matricula:</label>
-                    <input type="text" class="form-control" placeholder="matricula" id="matricula">
+                    <label >ID del paciente:</label>
+                    <input type="text" class="form-control" placeholder="id_paciente" id="id_paciente">
                 </div>
                 <div class="form-group">
-                    <label >Nombre:</label>
-                    <input type="text" class="form-control" placeholder="nombre" id="nombre">
+                    <label >ID del odontologo:</label>
+                    <input type="text" class="form-control" placeholder="_id_odontologo" id="id_odontologo">
                 </div>
                 <div class="form-group">
-                    <label >Apellido:</label>
-                    <input type="text" class="form-control" placeholder="apellido" id="apellido">
+                    <label >Fecha:</label>
+                    <input type="text" class="form-control" placeholder="fecha" id="fecha">
                 </div>
-
-
+ 
+ 
                 <button type="submit" class="btn btn-primary">Modificar</button>
             </form>
             <div id="response" style="display:none; margin:10px">
@@ -135,8 +115,9 @@
     </div>
 </div>
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../../js/turno/search_turno.js"></script>
+<script src="../../js/turno/delete_turno.js"></script>
+<script src="../../js/turno/update_turno.js"></script>
 </body>
 </html>

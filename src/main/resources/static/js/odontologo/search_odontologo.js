@@ -2,9 +2,6 @@ window.addEventListener('load', function(){
     console.log("iniciando funcion")
     const form = document.querySelector('#find_odontologo');
     var table = document.getElementById("odontologoTable");
-    
-    
-
 
     form.addEventListener('submit', function(e){
         e.preventDefault();
@@ -68,8 +65,5 @@ window.addEventListener('load', function(){
             document.querySelector(".nav .nav-item a:last").addClass("active");
         }
       })
-   
-   
-   
-    
+
 })

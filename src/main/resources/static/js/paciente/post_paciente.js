@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
     const form = document.forms[0];
-    const url = 'paciente';
+    const url = '/paciente';
 
 form.addEventListener('submit', function (event) {
     console.log("ejecutando script");
@@ -56,8 +56,6 @@ function realizarRegister(settings) {
         .then(data => {
             console.log("Promesa cumplida:");
             console.log(data);
-
-    
             
         }).catch(err => {
             console.log("Promesa rechazada:");

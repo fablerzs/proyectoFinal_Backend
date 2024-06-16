@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
     const form = document.forms[0];
-    const url = 'turnos';
+    const url = '/turnos';
 
 form.addEventListener('submit', function (event) {
     console.log("ejecutando script");

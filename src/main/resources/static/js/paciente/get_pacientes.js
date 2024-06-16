@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
 
     //con fetch invocamos a la API de peliculas con el método GET
     //nos devolverá un JSON con una colección de peliculas
-    const url = 'paciente/listar';
+    const url = '/paciente/listar';
     const settings = {
       method: 'GET'
     }
@@ -61,7 +61,7 @@ window.addEventListener('load', function () {
 
   (function(){
     let pathname = window.location.pathname;
-    if (pathname == "/pacienteList.html") {
+    if (pathname == "pacienteList.html") {
         document.querySelector(".nav .nav-item a:last").addClass("active");
     }
   })
