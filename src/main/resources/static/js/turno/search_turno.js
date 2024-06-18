@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
         e.preventDefault();
         console.log(e);
         let id = document.querySelector('#id').value
-        const url = '/turno/id/'+id;
+        const url = '/turno/'+id;
         const settings = {
             method: 'GET'
         }

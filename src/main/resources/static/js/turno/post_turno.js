@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
-    const form = document.forms[0];
-    const url = '/turno';
+    const form = document.querySelector("#add_new_turno")
+       
 
 
 form.addEventListener('submit', function (event) {
@@ -36,31 +36,21 @@ form.addEventListener('submit', function (event) {
 });
 
 
-//aswnd
+
+});
 
 function realizarRegister(settings) {
     console.log("Lanzando la consulta a la API");
+    const url = '/turno';
     fetch(url, settings)
-        .then(response => {
-            console.log(response);
-
-            if (response.ok==true) {
-                alert("Turno agregado con exito");
-            } else {
-                alert("Alguno de los datos es incorrecto.")
-            }
-
-             return response.json();
-
-        })
         .then(data => {
+            alert("Turno agregado con exito")
             console.log("Promesa cumplida:");
             console.log(data);
 
         }).catch(err => {
+            alert("Algunos de los datos son incorrectos")
             console.log("Promesa rechazada:");
             console.log(err);
         })
 };
-
-});

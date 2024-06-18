@@ -34,4 +34,8 @@ public class TurnoService {
     public Optional<Turno> buscarPorId(Long id){
         return turnoRepository.findById(id);
     }
+
+    public Turno actualizarTurno(Turno turno){
+        return turnoRepository.save(turno);
+    }
 }

@@ -23,5 +23,4 @@ public class Turno {
     private Odontologo odontologo;
     @Column
     private LocalDate fecha;
-
 }

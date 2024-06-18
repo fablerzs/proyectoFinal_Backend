@@ -9,6 +9,7 @@ import Clinica.ClinicaOdontologica.service.OdontologoService;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.service.TurnoService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,10 +44,32 @@ public class TurnoController {
     }
 
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> borrarTurno(@RequestParam Long id) throws ResourceNotFoundException {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> borrarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurno(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Turno> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException{
+        Optional<Turno> turnoBuscado = turnoService.buscarPorId(id);
+        if(turnoBuscado.isPresent()){
+            return ResponseEntity.ok(turnoBuscado.get());
+        }
+        else {
+            throw new ResourceNotFoundException("Turno con id: "+id+" no existe");
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<Turno> actualizarTurno(@RequestBody Turno turno) throws ResourceNotFoundException{
+        Optional<Turno> turnoBuscado = turnoService.buscarPorId(turno.getId());
+        if(turnoBuscado.isPresent()){
+            return ResponseEntity.ok(turnoService.actualizarTurno(turno));
+        }
+        else {
+            throw new ResourceNotFoundException("Turno con id: "+turno.getId()+" no existe");
+        }
     }
 
 
