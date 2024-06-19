@@ -1,11 +1,10 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
-    const form = document.querySelector("#add_new_turno")
-       
-
+const form = document.forms[0];
+const url = '/turno';
 
 form.addEventListener('submit', function (event) {
-    console.log("ejecutando script");
+    console.log("ejecutando evento submit");
     event.preventDefault();
     //creamos el cuerpo de la request
     const payload = {
@@ -17,8 +16,6 @@ form.addEventListener('submit', function (event) {
         },
         fecha: document.querySelector('#fecha').value
     };
-
-    console.log(payload)
 
     //configuramos la request del Fetch
     const settings = {
@@ -35,22 +32,30 @@ form.addEventListener('submit', function (event) {
     form.reset();
 });
 
-
-
-});
-
 function realizarRegister(settings) {
-    console.log("Lanzando la consulta a la API");
-    const url = '/turno';
+    console.log("Registro de turno en API");
+    console.log(settings)
+
     fetch(url, settings)
+        .then(response => {
+            console.log(response);
+
+            if (response.ok) {
+                alert("Turno agregado con exito");
+            } else{
+                alert("Alguno de los datos es incorrecto.")
+            }
+
+            return response.json();
+         })
         .then(data => {
-            alert("Turno agregado con exito")
             console.log("Promesa cumplida:");
             console.log(data);
 
         }).catch(err => {
-            alert("Algunos de los datos son incorrectos")
             console.log("Promesa rechazada:");
             console.log(err);
         })
 };
+
+});
