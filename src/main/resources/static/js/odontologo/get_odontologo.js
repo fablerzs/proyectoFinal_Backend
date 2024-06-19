@@ -1,24 +1,21 @@
 window.addEventListener('load', function(){
     console.log("iniciando funcion")
-        
 
     const api = '/odontologos/listartodos';
     const settings = {
         method: 'GET'
-      }
-    
+    }
 
-
-    
         fetch(api,settings)
         .then(response => response.json())
         .then(data =>{
             for(odontologo of data){
                 console.log("iniciando for")
                 var table = document.getElementById("odontologoTable");
+
                 var odontologoRow = table.insertRow();
-                let id = odontologo.id;
-                odontologoRow.id = id;
+                let tr_id = 'tr_' + odontologo.id;
+                odontologoRow.id = tr_id;
 
                 //boton de eliminar
                 let deleteButton = '<button' +
@@ -50,7 +47,5 @@ window.addEventListener('load', function(){
                 document.querySelector(".nav .nav-item a:last").addClass("active");
             }
           })
-    
-    
     
 })
