@@ -37,8 +37,8 @@ window.addEventListener('load', function(){
 
                 //insertar datos
                 turnoRow.innerHTML = '<td>' + updateButton + '</td>' +
-                    '<td class=\"td_id_paciente\">' + turno.paciente.id + '</td>' +
-                    '<td class=\"td_id_odontologo\">' + turno.odontologo.id + '</td>' +
+                    '<td class=\"td_id_paciente\">' + turno.paciente.nombre + ' ' + turno.paciente.apellido + '</td>' +
+                    '<td class=\"td_id_odontologo\">' + turno.odontologo.nombre + ' ' + turno.odontologo.apellido + '</td>' +
                     '<td class=\"td_fecha\">' + turno.fecha + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
