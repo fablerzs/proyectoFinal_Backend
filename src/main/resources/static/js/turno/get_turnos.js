@@ -11,12 +11,13 @@ window.addEventListener('load', function () {
       fetch(url, settings)
       .then(response => response.json())
       .then(data => {
+       console.log(data)
       //recorremos la colección de peliculas del JSON
          for(turno of data){
             //por cada pelicula armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos la pelicula
             var table = document.getElementById("turnoTable");
-            var pacienteRow = table.insertRow();
+            var turnoRow = table.insertRow();
             let tr_id = 'tr_' + turno.id;
             turnoRow.id = tr_id;
 
@@ -42,18 +43,23 @@ window.addEventListener('load', function () {
             //como primer columna pondremos el boton modificar
             //luego los datos de la pelicula
             //como ultima columna el boton eliminar
-            turnoRow.innerHTML =
-                    '<td>' + updateButton + '</td>' +
-                    '<td class=\"td_id_paciente\">' + turno.paciente.id + '</td>' +
-                    '<td class=\"td_id_odontologo\">' + turno.odontologo.id + '</td>' +
-                    '<td class=\"td_fecha\">' + turno.fecha + '</td>' +
-                    '<td>' + deleteButton + '</td>';
+
+            turnoRow.innerHTML = '<td>' + updateButton + '</td>' +
+                '<td class=\"td_id_paciente\">' + turno.paciente.nombre + ' ' + turno.paciente.apellido + '</td>' +
+                '<td class=\"td_id_odontologo\">' + turno.odontologo.nombre + ' ' + turno.odontologo.apellido + '</td>' +
+                '<td class=\"td_fecha\">' + turno.fecha + '</td>' +
+                '<td>' + deleteButton + '</td>';
         };
 
     })
    })
 
-   
+  (function(){
+    let pathname = window.location.pathname;
+    if (pathname == "turnoList.html") {
+        document.querySelector(".nav .nav-item a:last").addClass("active");
+    }
+  })
 
 
-    })
+})

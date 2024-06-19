@@ -64,16 +64,15 @@
 
 <div class="main_content" >
 
-
     <div id="div_turno_table">
         <h1>Lista de turnos</h1>
-        <div class="row col-md-6 table-responsive">
+        <div class="row col-md-10 table-responsive">
             <table id="turnoTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID del Paciente</th>
-                    <th>ID del Odontologo</th>
+                    <th>Paciente</th>
+                    <th>Odontologo</th>
                     <th>Fecha</th>
                     <th></th>
                 </tr>
@@ -85,7 +84,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6" style="display: none;
+        <div class="col-sm-10" style="display: none;
                                             background-color:#e6fffa; padding:10px; border-radius:3px"
              id="div_turno_updating">
             <form id="update_turno_form">
@@ -94,19 +93,18 @@
                     <input type="text" class="form-control" id="turno_id" readonly>
                 </div>
                 <div class="form-group">
-                    <label >ID del paciente:</label>
+                    <label >Paciente:</label>
                     <input type="text" class="form-control" placeholder="paciente_id" id="paciente_id">
                 </div>
                 <div class="form-group">
-                    <label >ID del odontologo:</label>
+                    <label >Odontologo:</label>
                     <input type="text" class="form-control" placeholder="odontologo_id" id="odontologo_id">
                 </div>
                 <div class="form-group">
                     <label >Fecha:</label>
                     <input type="text" class="form-control" placeholder="fecha" id="fecha">
                 </div>
- 
- 
+
                 <button type="submit" class="btn btn-primary">Modificar</button>
             </form>
             <div id="response" style="display:none; margin:10px">
@@ -116,7 +114,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="../../js/turno/search_turno.js"></script>
+<script src="../../js/turno/get_turnos.js"></script>
 <script src="../../js/turno/delete_turno.js"></script>
 <script src="../../js/turno/update_turno.js"></script>
 </body>
