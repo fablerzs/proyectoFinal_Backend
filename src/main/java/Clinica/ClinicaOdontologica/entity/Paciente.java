@@ -1,7 +1,9 @@
 package Clinica.ClinicaOdontologica.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -9,6 +11,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "pacientes")
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Paciente {
 
     @Id
@@ -28,4 +32,12 @@ public class Paciente {
     @Column
     private String email;
 
+    public Paciente(String nombre, String apellido, String DNI, LocalDate fechaIngreso, Domicilio domicilio, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.DNI = DNI;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
+        this.email = email;
+    }
 }
