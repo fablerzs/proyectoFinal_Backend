@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
     //que se desea modificar
     function findBy(id) {
         console.log("Busqueda de turno: " + id)
-          const url = '/turno/id/'+id;
+          const url = '/turno/'+id;
           const settings = {
               method: 'GET'
           }
