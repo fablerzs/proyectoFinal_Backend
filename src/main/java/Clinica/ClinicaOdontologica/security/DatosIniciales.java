@@ -22,10 +22,12 @@ public class DatosIniciales implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         String passSinCifrar= "admin";
+        String passSinCifrar2= "user";
         String passCifrado= bCryptPasswordEncoder.encode(passSinCifrar);
+        String passCifrado2 = bCryptPasswordEncoder.encode(passSinCifrar2);
         Usuario usuario= new Usuario("admin","admin","admin@admin.com",passCifrado,UsuarioRole.ROLE_ADMIN);
         System.out.println("pass cifrado: "+passCifrado);
-        Usuario usuario1 = new Usuario("mau","user1","mau@mau.com",passCifrado, UsuarioRole.ROLE_ADMIN);
+        Usuario usuario1 = new Usuario("user","user","user@user.com",passCifrado2, UsuarioRole.ROLE_USER);
         usuarioRepository.save(usuario1);
         usuarioRepository.save(usuario);
 

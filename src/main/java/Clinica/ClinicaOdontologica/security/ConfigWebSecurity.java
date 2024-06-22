@@ -37,10 +37,9 @@ public class ConfigWebSecurity {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/login.jsp").hasRole("USER")
-                        .requestMatchers("/odontologos").hasRole("ADMIN")
-                        .requestMatchers("/paciente").hasRole("ADMIN")
-                        .requestMatchers("/rol").hasRole("ADMIN")
+                                .requestMatchers("/odontologos/**").hasRole("ADMIN")
+                                .requestMatchers("/pacientes/**").hasRole("ADMIN")
+                                .requestMatchers("/login.jsp").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())

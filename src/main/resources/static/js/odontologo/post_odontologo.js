@@ -39,7 +39,7 @@ function realizarRegister(settings) {
             if (response.ok==true) {
                 alert("Odontologo agregado con exito");
             } else{
-                alert("Alguno de los datos es incorrecto.")
+                alert("Alguno de los datos es incorrecto o necesitas permisos de administrador.")
             }
             return response.json();
 
