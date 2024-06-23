@@ -34,25 +34,25 @@ public class ConfigWebSecurity {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-                                .requestMatchers("/odontologos/**").hasRole("ADMIN")
-                                .requestMatchers("/templates/odontologo/odontologoAlta.html").hasRole("ADMIN")
-                                .requestMatchers("/templates/odontologo/odontologoBusqueda.html").hasRole("ADMIN")
-                                .requestMatchers("/templates/odontologo/odontologoList.html").hasRole("ADMIN")
+                        .requestMatchers("/odontologos/**").hasRole("ADMIN")
+                        .requestMatchers("/templates/odontologo/odontologoAlta.html").hasRole("ADMIN")
+                        .requestMatchers("/templates/odontologo/odontologoBusqueda.html").hasRole("ADMIN")
+                        .requestMatchers("/templates/odontologo/odontologoList.html").hasRole("ADMIN")
 
-                                .requestMatchers("/paciente/**").hasRole("ADMIN")
-                                .requestMatchers("/templates/paciente/pacienteAlta.html").hasRole("ADMIN")
-                                .requestMatchers("/templates/paciente/pacienteBusqueda.html").hasRole("ADMIN")
-                                .requestMatchers("/templates/paciente/pacienteList.html").hasRole("ADMIN")
+                        .requestMatchers("/paciente/**").hasRole("ADMIN")
+                        .requestMatchers("/templates/paciente/pacienteAlta.html").hasRole("ADMIN")
+                        .requestMatchers("/templates/paciente/pacienteBusqueda.html").hasRole("ADMIN")
+                        .requestMatchers("/templates/paciente/pacienteList.html").hasRole("ADMIN")
 
-                                .requestMatchers("/turno/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/turno/**").hasAnyRole("ADMIN", "USER")
 
-                                .requestMatchers("/templates/turno/turnoAlta.html").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers("/templates/turno/turnoBusqueda.html").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers("/templates/turno/turnoList.html").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/templates/turno/turnoAlta.html").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/templates/turno/turnoBusqueda.html").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/templates/turno/turnoList.html").hasAnyRole("ADMIN", "USER")
 
-                                /* Página de h2 */
-                                .requestMatchers("/login.jsp").hasAnyRole("ADMIN", "USER")
-                    .anyRequest().authenticated()
+                        /* Página de h2 */
+                        .requestMatchers("/login.jsp").hasAnyRole("ADMIN", "USER")
+                        .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
                 .logout(withDefaults())
