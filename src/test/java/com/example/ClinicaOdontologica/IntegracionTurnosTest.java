@@ -1,20 +1,20 @@
 package com.example.ClinicaOdontologica;
 
 import Clinica.ClinicaOdontologica.ClinicaOdontologicaApplication;
-import Clinica.ClinicaOdontologica.entity.Domicilio;
+import Clinica.ClinicaOdontologica.dto.OdontologoDTO;
+import Clinica.ClinicaOdontologica.dto.PacienteDTO;
 import Clinica.ClinicaOdontologica.entity.Odontologo;
 import Clinica.ClinicaOdontologica.entity.Paciente;
 import Clinica.ClinicaOdontologica.entity.Turno;
+import Clinica.ClinicaOdontologica.exception.BadRequestException;
 import Clinica.ClinicaOdontologica.service.OdontologoService;
 import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.service.TurnoService;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -37,15 +37,23 @@ public class IntegracionTurnosTest {
     @Autowired
     private TurnoService turnoService;
 
-    public void cargarDatos(){
-        Paciente paciente = new Paciente("Angel", "Reyes", "1111", LocalDate.of(2024, 6, 19),
-                new Domicilio("Calle", 123, "Ciudad", "México"), "angel.rg@aol.com");
+    public void cargarDatos() throws BadRequestException {
+        PacienteDTO paciente = new PacienteDTO(
+                "Angel",
+                "Reyes",
+                "1111",
+                LocalDate.of(2024, 6, 19),
+                "Calle",
+                123,
+                "Ciudad",
+                "México",
+                "angel.rg@aol.com");
 
-        Paciente pacienteRespuesta = pacienteService.guardarPaciente(paciente);
+        Paciente pacienteRespuesta = pacienteService.pacienteDTOToEntity(pacienteService.guardarPaciente(paciente));
 
-        Odontologo odontologo = odontologoService.guardarOdontologo(new Odontologo(12345,"Karina", "Aviles"));
+        Odontologo odontologo = odontologoService.odontologoDTOToEntity(odontologoService.guardarOdontologo(new OdontologoDTO(12345, "Karina", "Aviles")));
 
-        Turno turnoGuardado = turnoService.nuevoTurno(new Turno(pacienteRespuesta, odontologo, LocalDate.of(2024, 06, 19)));
+        turnoService.nuevoTurno(new Turno(pacienteRespuesta, odontologo, LocalDate.of(2024, 06, 19)));
     }
 
     @Test

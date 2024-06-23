@@ -42,10 +42,10 @@ window.addEventListener('load', function(){
                     '<td class=\"td_apellido\">' + paciente.apellido.toUpperCase() + '</td>' +
                     '<td class=\"td_cedula\">' + paciente.dni.toUpperCase() + '</td>' +
                     '<td class=\"td_fechaIngreso\">' + paciente.fechaIngreso.toUpperCase() + '</td>' +
-                    '<td class=\"td_calle\">' + paciente.domicilio.calle.toUpperCase() + '</td>' +
-                    '<td class=\"td_numero\">' + paciente.domicilio.numero + '</td>' +
-                    '<td class=\"td_localidad\">' + paciente.domicilio.localidad.toUpperCase() + '</td>' +
-                    '<td class=\"td_provincia\">' + paciente.domicilio.provincia.toUpperCase() + '</td>' +
+                    '<td class=\"td_calle\">' + paciente.calle.toUpperCase() + '</td>' +
+                    '<td class=\"td_numero\">' + paciente.numero + '</td>' +
+                    '<td class=\"td_localidad\">' + paciente.localidad.toUpperCase() + '</td>' +
+                    '<td class=\"td_provincia\">' + paciente.provincia.toUpperCase() + '</td>' +
                     '<td class=\"td_email\">' + paciente.email.toUpperCase() + '</td>' +
                     '<td>' + deleteButton + '</td>';
 

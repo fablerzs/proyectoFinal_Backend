@@ -16,12 +16,12 @@ window.addEventListener('load', function () {
             apellido: document.querySelector('#apellido').value,
             dni: document.querySelector('#dni').value,
             fechaIngreso: document.querySelector('#fechaIngreso').value,
-            domicilio: {
+
                 calle: document.querySelector('#calle').value,
                 numero: document.querySelector('#numero').value,
                 localidad: document.querySelector('#localidad').value,
-                provincia: document.querySelector('#provincia').value
-                },
+                provincia: document.querySelector('#provincia').value,
+
             email: document.querySelector('#email').value
         };
 
@@ -59,10 +59,10 @@ window.addEventListener('load', function () {
             document.querySelector('#apellido').value = data.apellido;
             document.querySelector('#dni').value = data.dni;
             document.querySelector('#fechaIngreso').value = data.fechaIngreso;
-            document.querySelector('#calle').value = data.domicilio.calle;
-            document.querySelector('#numero').value = data.domicilio.numero;
-            document.querySelector('#localidad').value = data.domicilio.localidad;
-            document.querySelector('#provincia').value = data.domicilio.provincia;
+            document.querySelector('#calle').value = data.calle;
+            document.querySelector('#numero').value = data.numero;
+            document.querySelector('#localidad').value = data.localidad;
+            document.querySelector('#provincia').value = data.provincia;
             document.querySelector('#email').value = data.email;
 
               //el formulario por default esta oculto y al editar se habilita

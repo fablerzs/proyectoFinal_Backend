@@ -1,11 +1,10 @@
 package com.example.ClinicaOdontologica;
 
 import Clinica.ClinicaOdontologica.ClinicaOdontologicaApplication;
-import Clinica.ClinicaOdontologica.entity.Odontologo;
+import Clinica.ClinicaOdontologica.dto.OdontologoDTO;
 import Clinica.ClinicaOdontologica.service.OdontologoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,7 +30,7 @@ public class IntegracionOdontologoTest {
 
 
     public String cargarDatos() throws JsonProcessingException {
-        Odontologo odontologo = new Odontologo(1233, "Angel", "Reyes");
+        OdontologoDTO odontologo = new OdontologoDTO(1233, "Angel", "Reyes");
 
         return objectMapper.writeValueAsString(odontologoService.guardarOdontologo(odontologo));
     }
