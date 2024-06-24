@@ -28,7 +28,14 @@ window.addEventListener('load', function () {
             body: JSON.stringify(formData)
         }
           fetch(url,settings)
-          .then(response => response.json())
+          .then(response => {
+            if(response.ok){
+                alert("Datos actualizados con exito")
+            } else{
+                              alert("Alguno de los datos es incorrecto.")
+                          }
+            })
+
 
     })
  })

@@ -3,6 +3,7 @@ package Clinica.ClinicaOdontologica.controller;
 import Clinica.ClinicaOdontologica.entity.Turno;
 import Clinica.ClinicaOdontologica.exception.BadRequestException;
 import Clinica.ClinicaOdontologica.exception.ResourceNotFoundException;
+import Clinica.ClinicaOdontologica.service.PacienteService;
 import Clinica.ClinicaOdontologica.service.TurnoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class TurnoController {
 
     private TurnoService turnoService;
+
 
 
     @PostMapping
@@ -48,12 +50,12 @@ public class TurnoController {
     }
 
     @PutMapping
-    public ResponseEntity<Turno> actualizarTurno(@RequestBody Turno turno) throws ResourceNotFoundException{
+    public ResponseEntity<Turno> actualizarTurno(@RequestBody Turno turno) throws BadRequestException{
         Optional<Turno> turnoBuscado = turnoService.buscarPorId(turno.getId());
-        if(turnoBuscado.isPresent())
-            return ResponseEntity.ok(turnoService.actualizarTurno(turno));
+        if(turnoBuscado.isPresent()){
+            return ResponseEntity.ok(turnoService.actualizarTurno(turno));}
 
-        throw new ResourceNotFoundException("Turno con id: "+turno.getId()+" no existe");
+        throw new BadRequestException("Turno con id: "+turno.getId()+" no existe");
     }
 
 }

@@ -50,7 +50,16 @@ public class TurnoService {
         return turnoRepository.findById(id);
     }
 
-    public Turno actualizarTurno(Turno turno){
-        return turnoRepository.save(turno);
+    public Turno actualizarTurno(Turno turno) throws BadRequestException{
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(turno.getPaciente().getId());
+        Optional<Odontologo> odontologoBuscado = odontologoRepository.findById(turno.getOdontologo().getId());
+
+        if(pacienteBuscado.isPresent() && odontologoBuscado.isPresent()) {
+            turno.setPaciente(pacienteBuscado.get());
+            turno.setOdontologo(odontologoBuscado.get());
+            return turnoRepository.save(turno);
+        }
+
+        throw new BadRequestException("No existe el odontologo o el paciente indicados");
     }
 }
